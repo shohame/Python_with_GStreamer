@@ -1,0 +1,36 @@
+
+
+https://github.com/mad4ms/python-opencv-gstreamer-examples
+
+
+
+
+PENCV_VER="4.7.0.72"
+TMPDIR=$(mktemp -d)
+
+# Build and install OpenCV from source.
+cd "${TMPDIR}"
+git clone --branch ${OPENCV_VER} --depth 1 --recurse-submodules --shallow-submodules https://github.com/opencv/opencv-python.git opencv-python-${OPENCV_VER}
+cd opencv-python-${OPENCV_VER}
+export ENABLE_CONTRIB=0
+export ENABLE_HEADLESS=1
+# We want GStreamer support enabled.
+export CMAKE_ARGS="-DWITH_GSTREAMER=ON"
+python3 -m pip wheel . --verbose
+
+# Install OpenCV
+
+
+pip install --upgrade pip wheel
+git clone --branch 4.x --depth 1 --recurse-submodules --shallow-submodules https://github.com/opencv/opencv-python.git opencv-python-4.x
+cd opencv-python-4.x
+export ENABLE_CONTRIB=0
+export ENABLE_HEADLESS=1
+export CMAKE_ARGS="-DWITH_GSTREAMER=ON"
+python -m pip wheel . --verbose
+
+python -m pip install opencv_python-4.x.whl
+
+
+python -m pip install opencv_python-4.x.whl
+

@@ -1,0 +1,1 @@
+gst-launch-1.0 -v filesrc location=D:\Work\PycharmProjects\Mulicast_Video\data\test_video.mp4 ! decodebin ! videoconvert ! x264enc tune=zerolatency ! rtph264pay ! udpsink host=localhost port=5000
