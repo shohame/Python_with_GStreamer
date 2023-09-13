@@ -1,14 +1,10 @@
 
 import cv2
 print(cv2.getBuildInformation())
-txt_org = "udpsrc port=5000 ! application/x-rtp,media=video,encoding-name=H264 ! queue ! rtpjitterbuffer latency=500 ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! video/x-raw,format=BGR ! queue ! appsink drop=1"
-txt = 'udpsrc multicast-group=224.1.1.1 auto-multicast=true port=5000 ! application/x-rtp,media=video,clock-rate=90000,encoding-name=H264,payload=96 ! rtph264depay ! avdec_h264 ! appsink'
-#txt = 'udpsrc multicast-group=224.1.1.1 auto-multicast=true port=5000 ! application/x-rtp,media=video,clock-rate=90000,encoding-name=H264,payload=96 ! rtph264depay ! avdec_h264 ! appsink drop=1'
+txt = 'udpsrc multicast-group=224.1.1.1 auto-multicast=true port=5000 ! application/x-rtp,media=video,clock-rate=90000,encoding-name=H264,payload=96 ! rtph264depay ! avdec_h264 ! videoconvert ! appsink'
 
 cap = cv2.VideoCapture(txt, cv2.CAP_GSTREAMER)
 
-# For NVIDIA using NVMM memory
-#cap = cv2.VideoCapture("udpsrc port=5000 ! application/x-rtp,media=video,encoding-name=H264 ! queue ! rtpjitterbuffer latency=500 ! rtph264depay ! h264parse ! nvv4l2decoder ! nvvidconv ! video/x-raw,format=BGRx ! videoconvert ! video/x-raw,format=BGR ! queue ! appsink drop=1", cv2.CAP_GSTREAMER)
 
 width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
 height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
