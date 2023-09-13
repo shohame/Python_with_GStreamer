@@ -9,6 +9,9 @@ gst-launch-1.0 gdiscreencapsrc ! decodebin ! videoconvert ! x264enc tune=zerolat
 
 gst-launch-1.0 udpsrc multicast-group=224.1.1.1 auto-multicast=true port=5000 ! application/x-rtp,media=video,clock-rate=90000,encoding-name=H264,payload=96 ! rtph264depay ! avdec_h264 ! autovideosink
 
+or:
+
+gst-launch-1.0 udpsrc multicast-group=224.1.1.1 auto-multicast=true port=5000 ! application/x-rtp,media=video,clock-rate=90000,encoding-name=H264,payload=96 ! rtph264depay ! avdec_h264 ! glimagesink
 
 change autovideosink to  appsink  for opencv2
 
